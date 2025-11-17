@@ -334,7 +334,7 @@ export default function RightSidebar({ petRef }) {
       let data;
 
       if (simulatorMode) {
-        const res = await fetch("http://localhost:5002/api/medico", {
+        const res = await fetch("https://petzy-deploy.onrender.com/api/medico", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -348,7 +348,7 @@ export default function RightSidebar({ petRef }) {
         if (!res.ok) throw new Error("HTTP error! status: " + res.status);
         data = await res.json();
       } else {
-        const res = await fetch("http://localhost:5000/api/chat", {
+        const res = await fetch("https://petzy-chat.onrender.com/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -422,7 +422,7 @@ export default function RightSidebar({ petRef }) {
 
   const clearHistory = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/clear", {
+      const response = await fetch("https://petzy-chat.onrender.com/api/clear", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ session_id: sessionIdRef.current }),
@@ -443,7 +443,7 @@ export default function RightSidebar({ petRef }) {
     setSimulatorMode(true);
 
     try {
-      const res = await fetch("http://localhost:5002/api/medico", {
+      const res = await fetch("https://petzy-deploy.onrender.com/api/medico", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -18,11 +18,21 @@ app = FastAPI()
 # ✅ Allow requests from React Game3 on port 5001 (and main app if needed)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5001", "http://localhost:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:5001",
+        "https://petzygo.netlify.app",   # ✅ your live frontend
+        "https://*.netlify.app"          # optional wildcard
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.options("/generate_story")
+async def options_handler():
+    return {}
+
 
 # ------------------ Request body schema ------------------ #
 class StoryRequest(BaseModel):
