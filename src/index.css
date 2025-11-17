@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;600;700&display=swap');
+
+/* Custom CSS for effects not available in Tailwind */
+.bg-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.nav-link-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.nav-link-hover:hover::before {
+  left: 0;
+}
+
+.pet-model-border::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  padding: 8px;
+  background: conic-gradient(from 0deg, #00ffff, #ff00ff, #39ff14, #00ffff);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes slideIn {
+  from { transform: translate(-50%, -50%) scale(0.8) rotate(-10deg); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes slideOut {
+  from { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
+  to { transform: translate(-50%, -50%) scale(0.8) rotate(10deg); opacity: 0; }
+}
+
+.pet-container {
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  align-items: center;     /* centers vertically */
+  height: 100vh;           /* full screen height */
+  width: 100%;             /* full width */
+  position: relative;
+}
+
+/* Modern themed custom scrollbar (WebKit browsers) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;             /* vertical scrollbar width */
+  height: 8px;             /* horizontal scrollbar height (if any) */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.03); /* subtle track */
+  border-radius: 12px;
+  margin: 6px 0; /* small top/bottom gap inside panel */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(66, 196, 255, 0.18), rgba(98, 60, 255, 0.18));
+  border-radius: 999px;
+  border: 2px solid rgba(0,0,0,0.15); /* inset look */
+  backdrop-filter: blur(4px);
+  min-height: 28px;
+}
+
+/* hover state for thumb */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(66, 196, 255, 0.28), rgba(98, 60, 255, 0.28));
+  transform: translateZ(0);
+}
+
+/* optional: make scrollbar slightly thinner on small screens */
+@media (max-width: 640px) {
+  .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+}
+
+/* Firefox scrollbar styling */
+.custom-scrollbar {
+  scrollbar-width: thin; /* "auto" | "thin" | "none" */
+  scrollbar-color: rgba(98,60,255,0.22) rgba(255,255,255,0.03); /* thumb track */
+}
+
+/* Accessibility: ensure keyboard focusable content still shows outline */
+.custom-scrollbar :focus {
+  outline: 2px solid rgba(98, 60, 255, 0.4);
+  outline-offset: 2px;
+}
+
+/* Prevent text wrapping causing horizontal overflow — safe guard */
+.custom-scrollbar * {
+  word-break: break-word;
+  -webkit-user-select: text;
+}
+
+/* Optional: smooth scrolling inside the panel */
+.custom-scrollbar {
+  scroll-behavior: smooth;
+}
