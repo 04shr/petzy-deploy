@@ -31,23 +31,18 @@ const PetzyLanding = ({ setIsAuthenticated }) => {
     const [showDeviceWarning, setShowDeviceWarning] = useState(false);
 
 useEffect(() => {
-  function check() {
-    const width = window.innerWidth;
-    if (width < 1024) {
-      setShowDeviceWarning(true);
-    } else {
-      setShowDeviceWarning(false);
-    }
+  const isMobileUA =
+    /iPhone|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+
+  const isSmallScreen = window.matchMedia("(max-width: 1280px)").matches;
+
+  if (isMobileUA || isSmallScreen) {
+    setShowDeviceWarning(true);
   }
-
-  // Run immediately after hydration
-  setTimeout(check, 0);
-
-  // Run again when DevTools resizes
-  window.addEventListener("resize", check);
-
-  return () => window.removeEventListener("resize", check);
 }, []);
+
 
 
 
