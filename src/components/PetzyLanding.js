@@ -32,6 +32,14 @@ const PetzyLanding = ({ setIsAuthenticated }) => {
   const location = useLocation();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showDeviceWarning, setShowDeviceWarning] = useState(false);
+
+useEffect(() => {
+  if (window.innerWidth < 1024) {
+    setShowDeviceWarning(true);
+  }
+}, []);
+
   const [showStory, setShowStory] = useState(false);
   const [storyStep, setStoryStep] = useState(0);
   const [userInfo, setUserInfo] = useState({ username: "", petName: "", secretKey: "" });
@@ -411,6 +419,34 @@ const nextStep = async () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/50 to-slate-900 text-white font-sans overflow-x-hidden">
+      {/* ===== Cute Laptop-Only Warning Popup ===== */}
+{showDeviceWarning && (
+  <div className="fixed inset-0 bg-black/80 backdrop-blur-xl z-[200] flex items-center justify-center p-6">
+    <div className="bg-gradient-to-br from-purple-700/70 to-pink-700/70 border border-purple-300/30 shadow-2xl rounded-3xl p-8 max-w-md w-full text-center animate-in fade-in duration-300">
+
+      <div className="text-6xl mb-4 animate-bounce">🐾</div>
+
+      <h2 className="text-2xl font-bold mb-3 text-white">
+        Oopsie! Petzy Needs More Space 💻✨
+      </h2>
+
+      <p className="text-gray-200 text-base leading-relaxed mb-6">
+        Your screen is a little tiny for Petzy’s fluffy 3D magic.
+        <br />
+        Please switch to a **laptop or desktop** for the full adorable experience! 💖
+      </p>
+
+      <button
+        onClick={() => setShowDeviceWarning(false)}
+        className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold shadow-lg shadow-purple-500/30 hover:scale-105 transition-transform"
+      >
+        I Understand 💗
+      </button>
+
+    </div>
+  </div>
+)}
+
       {showStory && (
         <StoryModal
           currentIndex={currentIndex}
