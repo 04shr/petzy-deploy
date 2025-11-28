@@ -21,8 +21,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://localhost:5001",
-        "https://petzygo.netlify.app",   # ✅ your live frontend
-        "https://*.netlify.app"          # optional wildcard
+        "https://petzygo.netlify.app",   
+        "https://*.netlify.app"       
     ],
     allow_credentials=True,
     allow_methods=["*"],

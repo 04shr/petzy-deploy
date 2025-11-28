@@ -46,7 +46,7 @@ const PetzyLanding = ({ setIsAuthenticated }) => {
 const availableModels = [
   { id: "dog", name: "Dog", emoji: "🐕", file: "/models/mouth.glb", color: "from-amber-500 to-orange-600" },
   { id: "fox", name: "Fox", emoji: "🦊", file: "/models/fox.glb", color: "from-pink-500 to-purple-600" },
-  { id: "panda", name: "Panda", emoji: "🐼", file: "/models/panda.glb", color: "from-pink-500 to-purple-600" },
+  { id: "panda", name: "Bunny", emoji: "🐼", file: "/models/panda.glb", color: "from-pink-500 to-purple-600" },
   { id: "tiger", name: "Tiger", emoji: "🐯", file: "/models/tiger.glb", color: "from-pink-500 to-purple-600" },
 ];
 
