@@ -31,17 +31,24 @@ const PetzyLanding = ({ setIsAuthenticated }) => {
     const [showDeviceWarning, setShowDeviceWarning] = useState(false);
 
 useEffect(() => {
-  const isMobileUA =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
-
-  const isSmallScreen = window.matchMedia("(max-width: 1024px)").matches;
-
-  if (isMobileUA || isSmallScreen) {
-    setShowDeviceWarning(true);
+  function check() {
+    const width = window.innerWidth;
+    if (width < 1024) {
+      setShowDeviceWarning(true);
+    } else {
+      setShowDeviceWarning(false);
+    }
   }
+
+  // Run immediately after hydration
+  setTimeout(check, 0);
+
+  // Run again when DevTools resizes
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
 }, []);
+
 
 
   const navigate = useNavigate();
