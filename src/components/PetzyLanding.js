@@ -31,10 +31,19 @@ const PetzyLanding = ({ setIsAuthenticated }) => {
     const [showDeviceWarning, setShowDeviceWarning] = useState(false);
 
 useEffect(() => {
-  if (window.innerWidth < 1024) {
+  const isMobileUA =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+
+  const isSmallScreen = window.matchMedia("(max-width: 1024px)").matches;
+
+  if (isMobileUA || isSmallScreen) {
     setShowDeviceWarning(true);
   }
 }, []);
+
+
   const navigate = useNavigate();
   const location = useLocation();
 
