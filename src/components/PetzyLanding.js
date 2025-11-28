@@ -28,17 +28,18 @@ import { useNavigate, useLocation } from "react-router-dom";
    PetzyLanding Component
    ========================= */
 const PetzyLanding = ({ setIsAuthenticated }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showDeviceWarning, setShowDeviceWarning] = useState(false);
+    const [showDeviceWarning, setShowDeviceWarning] = useState(false);
 
 useEffect(() => {
   if (window.innerWidth < 1024) {
     setShowDeviceWarning(true);
   }
 }, []);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
   const [showStory, setShowStory] = useState(false);
   const [storyStep, setStoryStep] = useState(0);
