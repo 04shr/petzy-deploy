@@ -21,13 +21,15 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://localhost:5001",
-        "https://petzygo.netlify.app",   
-        "https://*.netlify.app"       
+        "https://petzygo.netlify.app",
+        "https://gopetzy.netlify.app",  # NEW FRONTEND DOMAIN
+        "https://*.netlify.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.options("/generate_story")
 async def options_handler():
